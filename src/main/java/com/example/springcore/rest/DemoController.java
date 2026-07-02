@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController {
 
-    private Coach myCoach;
+    private final Coach myCoach;
+//    private Coach anotherCoach;
 //
 //    @Autowired
 //    public DemoController(Coach theCoach) {
@@ -18,14 +19,19 @@ public class DemoController {
 
 
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+    public DemoController(@Qualifier("aquatic") Coach theCoach) {
         System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
+//       anotherCoach = theAnotherCoach;
     }
-
 
     @GetMapping("/daily-workout")
     public String getDailyWorkout() {
         return myCoach.getDailyWorkout();
     }
+
+//    @GetMapping("/check")
+//    public String check() {
+//        return "Comparing beans: myCoach == anotherCoach, " + (myCoach == anotherCoach);
+//    }
 }
